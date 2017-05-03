@@ -16,19 +16,19 @@
 # To help you get started, we've provided a sample paragraph that you can use when testing your code.
 # Your game should consist of 3 or more levels, so you should add your own paragraphs as well!
 
-print "Please type a game difficulty to get started!" #User is asked for difficulty level
-level = raw_input("Possible choices include easy, medium, and hard.")
+# sample = '''A ___1___ is created with the def keyword. You specify the inputs a ___1___ takes by
+# adding ___2___ separated by commas between the parentheses. ___1___s by default return ___3___ if you
+# don't specify the value to return. ___2___ can be standard data types such as string, number, dictionary,
+# tuple, and ___4___ or can be more complicated such as objects and lambda functions.'
+
+print "Please type a game difficulty to get started!"
+level = raw_input("Possible choices include easy, medium, and hard.") #User is asked for difficulty level
 
 missing_blanks = ["Aang", "the last airbender"]
 
 test_string1 = "___1___ is a young air nomad and is ___2___!"
 
 guesses = 5
-
-# sample = '''A ___1___ is created with the def keyword. You specify the inputs a ___1___ takes by
-# adding ___2___ separated by commas between the parentheses. ___1___s by default return ___3___ if you
-# don't specify the value to return. ___2___ can be standard data types such as string, number, dictionary,
-# tuple, and ___4___ or can be more complicated such as objects and lambda functions.'
 
 def word_in_blanks (word, missing_blanks):
     for blanks in missing_blanks:
@@ -38,16 +38,17 @@ def word_in_blanks (word, missing_blanks):
 
 def play_game (word_string, missing_blanks):
     blankReplaced = []
-    test_string1 = test_string1.split()
+    word_string = word_string.split()
+    index = 0
     for word in word_string:
+        user_input = raw_input("What should be substituted in for __" + str(index + 1) + "__?") #NEED TO FIX THIS. SEARCH FOR __#__ THROUGH POS AND ASK USER FOR REPLACEMENT
         replacement = word_in_blanks(word, missing_blanks)
-        user_input = raw_input("What should be substituted in for __1__?")
-        if user_input == "captain falcon":
-            # replace the __1__ in test_string1 with captain falcon from missing_blanks
-            test_string1 = test_string1.replace("captain")
-            blankReplaced.append(test_string1)
+        if user_input in missing_blanks:
+            word = word.replace("__" + str(index + 1) + "__", missing_blanks[index])
+            blankReplaced.append(word)
+            index = index + 1
         else:
-            blankReplaced.append(test_string1) #need to change if user doesn't get the correct answer so loop back
+            blankReplaced.append(word_string)
     blankReplaced = " ".join(blankReplaced)
     return blankReplaced
 
@@ -56,9 +57,8 @@ if level == 'easy':
     print ('\n' "You get 5 guesses for each problem.")
 
     print "The current paragraph reads as follows:" + '\n' + test_string1 #sample
-        #probably use loop for guesses depending if correct or wrong guesses
+    print play_game(test_string1, missing_blanks)
 
-    #print answerEasy
 
 # if level == 'medium':
 #   print "You've selected " + level + "!!"
