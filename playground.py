@@ -6,12 +6,9 @@ easy_answers = ["equal", "print", "def", "input"]
 print "Please type a game difficulty to get started!"
 level = raw_input("Possible choices include easy, medium, and hard.") #User is asked for difficulty level
 
-output = ''
-attempts_allowed = 5
-
 def play_game (test_string, missing_values):
-    global output
-    global attempts_allowed
+    output = ''
+    attempts_allowed = 5
     for word in test_string.split():
         if word.startswith("__"):
             while attempts_allowed > 0:
@@ -36,5 +33,5 @@ if level == 'easy':
     print "You've selected " + level + "!"
     print ('\n' "You get 5 guesses for each problem.")
 
-    print "The current paragraph reads as follows:" + '\n' + easy_quiz #sample
+    print "The current paragraph reads as follows:" + '\n' + easy_quiz
     print play_game(easy_quiz, easy_answers)
