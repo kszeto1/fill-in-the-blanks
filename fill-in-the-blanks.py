@@ -25,7 +25,7 @@ def play_game (test_string, missing_values):
     for word in test_string.split():
         if word.startswith("__"):
             while attempts_allowed > 0:
-                user_input = raw_input("fill in the blank for " + word)
+                user_input = raw_input("What should be substituted for " + word)
                 if user_input == missing_values[0]:
                     test_string = test_string.replace(word, user_input)
                     missing_values.remove(user_input)
